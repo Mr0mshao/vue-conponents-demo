@@ -20,7 +20,7 @@
         </div>
         <div class="item-info">
           <div>
-            {{item.name}}<br/>
+            <div class="desc" :title="item.name">{{item.name}}</div>
             {{item.size | imgSpace}}
           </div>
           <div>
@@ -73,10 +73,9 @@ export default {
           alert('抱歉！您上传的不是图片类型文件。')
           return false
         }
+        const newFile = imgFiles[i]
         for (let j = 0; j < this.imgList.length; j++) {
-          const newFile = imgFiles[i]
           const oldFile = this.imgList[j]
-          console.log(oldFile)
           if (newFile.name === oldFile.name && newFile.size === oldFile.size && newFile.type === oldFile.type) {
             imgFiles.splice(i, 1)
           }
@@ -234,5 +233,11 @@ export default {
 }
 .item-info .info-btn:hover {
   border: 1px solid #f60;
+}
+.item-info .desc {
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 </style>
