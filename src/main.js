@@ -18,6 +18,10 @@ const router = new VueRouter({
     {
       path: '/loadmore',
       component: resolve => require(['./views/loadmore.vue'], resolve)
+    },
+    {
+      path: '/mobile',
+      component: resolve => require(['./views/mobile-upload.vue'], resolve)
     }
   ]
 })
