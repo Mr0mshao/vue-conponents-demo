@@ -35,7 +35,7 @@ export default {
   methods: {
     touchMove (e) {
       e = e || event
-      if (e.touches.length === 1) {
+      if (e.touches && e.touches.length === 1) {
         this.moveX = e.touches[0].clientX
         this.disX = this.startX - this.moveX
         if (this.disX < 0 || this.disX === 0) {
@@ -53,17 +53,18 @@ export default {
     },
     touchStart (e) {
       e = e || event
-      if (e.touches.length === 1) {
+      if (e.touches && e.touches.length === 1) {
         this.startX = e.touches[0].clientX
         this.txtStyle = `transform: translateX(0px); transition: transform 0.5s;`
       }
     },
     touchEnd (e) {
       e = e || event
+      console.log(e)
       if (this.disX < this.delWidth) {
         this.txtStyle = 'transform: translateX(0); transition: transform 0.5s;'
       }
-      if (e.changedTouches.length === 1) {
+      if (e.changedTouches && e.changedTouches.length === 1) {
         this.startX = 0
         this.zIndex = 'z-index: -10'
         let endX = e.changedTouches[0].clientX
